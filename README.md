@@ -4,8 +4,7 @@
 
 <!-- - 👯 I’m looking to collaborate on ... -->
 <!-- - 🤔 I’m looking for help with ... -->
-@@ -18,11 +18,15 @@
-![CSS](https://img.shields.io/badge/-CSS-9072f6?style=flat&logo=css3&logoColor=white)
+
 
 ### Github Activity
 
