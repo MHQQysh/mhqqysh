@@ -6,6 +6,8 @@ I am studying machine learning. And much interested in more hardware layer.
 <!-- - 🤔 I’m looking for help with ... -->
 
 
+I am now learning with a DIFFUSION scientific group in ZJUI.
+
 
 ### Github Activity
  
