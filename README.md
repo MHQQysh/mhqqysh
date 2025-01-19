@@ -9,6 +9,8 @@ I am studying machine learning. And much interested in more hardware layer.
 Now the most important thing is to pass toefl.
 I am now learning with a DIFFUSION scientific group in ZJUI.
 
+Question
+1. How to full time full effort on my work
 
 
 ### Github Activity
