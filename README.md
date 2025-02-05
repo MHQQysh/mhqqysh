@@ -10,6 +10,7 @@ I am studying machine learning. And much interested in more hardware layer.
 
 
 
+
 i'm a little worried
     
 Now the most important thing is to pass toefl.
