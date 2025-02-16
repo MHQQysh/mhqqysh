@@ -11,7 +11,7 @@ I am studying machine learning. And much interested in more hardware layer.
  🤔 I’m sometimes curious that how.to begin a project when i.don't know anything about and don't have an environment 
 
  
-
+ 
 i'm a little worried
 
     
