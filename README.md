@@ -1,27 +1,13 @@
 
-### Hi there 👋
+### Hi there 👋👋👋
 - 🔭 I’m Shihong Yuan 袁诗鸿 
 - 🔭 I’m currently studying in Zhejiang University and University of Illnois Urbana-Champaign
-I am studying machine learning. And much interested in more hardware layer.
+- 👯 I am now learning with a DIFFUSION scientific group in ZJUI.
+- 🤔 I am also willing to studying machine learning in hardware layer.
+- 👯 I’m looking to collaborate on science research.
 
 
-
-
- 👯 I’m looking to collaborate on science research.
- 🤔 I’m sometimes curious that how.to begin a project when i.don't know anything about and don't have an environment 
-
- 
- 
-i'm a little worried
-
-    
-Now the most important thing is to pass toefl.
-I am now learning with a DIFFUSION scientific group in ZJUI.
-
-Question
-1. How to full time full effort on my work
-
-
+!!!!!!Now the most important thing is to pass toefl.!!!!!!!!!!
 
 ### Github Activity
  
