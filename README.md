@@ -4,7 +4,7 @@
 - 🔭 I’m currently studying in Zhejiang University and University of Illnois Urbana-Champaign
 - 👯 I am now learning with a DIFFUSION scientific group in ZJUI.
 - 🤔 I am also willing to studying machine learning in hardware layer.
-- 👯 I’m looking to collaborate on science research.
+- 👯 I’m looking forward to collaborate on science research.
 
 
 
