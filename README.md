@@ -4,7 +4,7 @@
 - 🔭 I’m currently studying in Zhejiang University and University of Illnois Urbana-Champaign
 - 👯 I am now learning with a DIFFUSION scientific group in ZJUI.
 - 🤔 I am also willing to studying machine learning in hardware layer.
-- 👯 我将我机械专业的大一大二的学习资料都放到了github，可供大家学习使用
+- 👯 我将我机械专业的大一大二的学习资料都放到了github，可供大家学习使用，现在是大三我每次作业之后也都会按时更新
 
 https://github.com/ZJUI-ME-course
 
