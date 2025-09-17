@@ -1,44 +1,65 @@
-name: generate animation
+# Workflow的名称，将显示在GitHub Actions选项卡中
+name: Generate Contribution Snake Animation
 
 on:
-  # run automatically every 2 hours
-  schedule:
-    - cron: "0 */2 * * *" 
+  # 触发器：定义此工作流何时运行
   
-  # allows to manually run the job at any time
+  # 1. 定时运行：每2小时自动运行一次
+  schedule:
+    - cron: "0 */2 * * *"
+  
+  # 2. 手动触发：允许从Actions选项卡手动运行此工作流
   workflow_dispatch:
   
-  # run on every push on the master branch
+  # 3. 推送时运行：每当有代码推送到master分支时运行
   push:
     branches:
-    - master
-  
-  
+      - master
 
 jobs:
+  # 作业：定义一系列在此工作流中执行的步骤
   generate:
-    permissions: 
+    # 权限设置：授予作业写入仓库内容的权限
+    permissions:
       contents: write
+      
+    # 运行环境：指定作业在最新的Ubuntu环境上运行
     runs-on: ubuntu-latest
+    
+    # 超时设置：如果作业运行超过5分钟，则自动终止
     timeout-minutes: 5
   
     steps:
-      # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
-      - name: generate github-contribution-grid-snake.svg
+      # 步骤1：从GitHub贡献图中生成贪吃蛇动画
+      - name: Generate Contribution Snake SVG
+        # 使用一个现有的Action来生成SVG文件
         uses: Platane/snk/svg-only@v3
         with:
+          # GitHub用户名，这里使用仓库所有者的名称
           github_user_name: ${{ github.repository_owner }}
+          # 输出文件路径，同时生成亮色和暗色两个版本的SVG
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-  
-  
-      # push the content of <build_dir> to a branch
-      # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
-      - name: push github-contribution-grid-snake.svg to the output branch
+
+      # 步骤2：提交生成的文件
+      - name: Commit Generated Files
+        run: |
+          # 配置git提交者信息
+          git config --global user.name "mhqqysh"
+          git config --global user.email "shihongyuan99@gmail.com"
+          # 提交所有更改。`|| exit 0` 表示如果没有文件更改，命令会失败，但不会导致整个工作流失败
+          git commit -a -m "chore: Generate new contribution snake" || exit 0
+
+      # 步骤3：将生成的文件推送到output分支
+      - name: Push to Output Branch
+        # 使用一个现有的Action来发布文件到指定分支
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
+          # 目标分支的名称
           target_branch: output
+          # 包含要推送的文件的目录
           build_dir: dist
         env:
+          # GITHUB_TOKEN用于授权Action推送到仓库
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
