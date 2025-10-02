@@ -1,67 +1,44 @@
-# Workflow的名称，将显示在GitHub Actions选项卡中
-name: Generate Contribution Snake Animation
+name: generate animation
 
 on:
-  # 触发器：定义此工作流何时运行
-  
-  # 1. 定时运行：每2小时自动运行一次
-  schedule:
-    - cron: "* */2 * * *"
-  
-  # 2. 手动触发：允许从Actions选项卡手动运行此工作流
-  workflow_dispatch:
-  
-  # 3. 推送时运行：每当有代码推送到master分支时运行
-  push:
-    branches:
-      - master
+  # run automatically every 2 hours
+  schedule:
+    - cron: "0 */2 * * *" 
+  
+  # allows to manually run the job at any time
+  workflow_dispatch:
+  
+  # run on every push on the master branch
+  push:
+    branches:
+    - master
+  
+  
 
 jobs:
-  # 作业：定义一系列在此工作流中执行的步骤
-  generate:
-    # 权限设置：授予作业写入仓库内容的权限
-    permissions:
-      contents: write
-      
-    # 运行环境：指定作业在最新的Ubuntu环境上运行
-    runs-on: ubuntu-latest
-    
-    steps:
-      # 步骤 1: 检出当前仓库代码
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      # 步骤 2: 从GitHub贡献图中生成贪吃蛇动画
-      # SVG文件会生成在 'dist' 目录下
-      - name: Generate Contribution Snake SVG
-        uses: Platane/snk/svg-only@v3
-        with:
-          # GitHub用户名
-          github_user_name: ${{ github.repository_owner }}
-          # 输出文件路径
-          outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-
-      # 步骤 3: 准备要推送到目标仓库的文件
-      # 创建一个新目录，并在其中建立 'jpg' 子目录，然后将生成的SVG文件移入
-      - name: Prepare Files for Push
-        run: |
-          mkdir -p publish/jpg
-          mv dist/*.svg publish/jpg/
-
-      # 步骤 4: 将生成的文件推送到 mhqqysh/mhqqysh 仓库
-      - name: Push to mhqqysh/mhqqysh Repository
-        uses: crazy-max/ghaction-github-pages@v4
-        with:
-          # 用于授权的Personal Access Token (PAT)，需要你在仓库的Secrets中配置
-          token: ${{ secrets.GH_PAT }}
-          # 目标仓库的名称
-          external_repository: mhqqysh/mhqqysh
-          # 目标仓库的分支
-          target_branch: main
-          # 包含要推送的文件的目录 (这里是 'publish' 目录)
-          build_dir: publish
-          # 自定义的提交信息
-          commit_message: "docs: update contribution snake animation"
-
+  generate:
+    permissions: 
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+  
+    steps:
+      # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
+      - name: generate github-contribution-grid-snake.svg
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+  
+  
+      # push the content of <build_dir> to a branch
+      # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
+      - name: push github-contribution-grid-snake.svg to the output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
